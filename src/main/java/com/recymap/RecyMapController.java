@@ -1,15 +1,16 @@
 package com.recymap;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 @RestController
+@RequestMapping("/points")
 public class RecyMapController {
-    @GetMapping("/points")
+    @GetMapping("/all")
     public String points() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("points.json"));
         StringBuilder stringBuilder = new StringBuilder();
@@ -24,5 +25,10 @@ public class RecyMapController {
         reader.close();
 
         return stringBuilder.toString();
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<RecyclePointDto> createPoint(@RequestBody RecyclePointDto recyclePoint) {
+        return null;
     }
 }
