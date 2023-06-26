@@ -1,6 +1,7 @@
 package com.recymap;
 
-import org.springframework.http.ResponseEntity;
+import com.google.gson.Gson;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
@@ -27,8 +28,11 @@ public class RecyMapController {
         return stringBuilder.toString();
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<RecyclePointDto> createPoint(@RequestBody RecyclePointDto recyclePoint) {
+    @PostMapping(path = "/create",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public RecyclePointDto createPoint(@RequestBody RecyclePointDto recyclePoint) {
+        System.out.println(recyclePoint.toString());
         return null;
     }
 }
